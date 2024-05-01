@@ -56,9 +56,22 @@ Route::controller(\App\Http\Controllers\CustomerController::class)->prefix('/cus
     Route::post('/ajax/report', 'customerAjaxReport')->name('ajax.report');
     Route::get('/view/{id}', 'show')->name('view');
 });
+Route::controller(\App\Http\Controllers\GalleryController::class)->prefix('/gallery')->name('gallery.')->group(function () {
+    Route::get('/status/{id}', 'status')->name('status');
+    Route::get('delete/{id}', 'destroy')->name('delete');
+});
+Route::controller(\App\Http\Controllers\BlogController::class)->prefix('/blog')->name('blog.')->group(function () {
+    Route::get('/status/{id}', 'status')->name('status');
+    Route::get('delete/{id}', 'destroy')->name('delete');
+});
+Route::controller(\App\Http\Controllers\AppoinmentController::class)->prefix('/appoinment')->name('appoinment.')->group(function () {
+    Route::get('/status/{id}', 'status')->name('status');
+    Route::get('delete/{id}', 'destroy')->name('delete');
+});
 Route::resource('customer', \App\Http\Controllers\CustomerController::class);
-
-
+Route::resource('gallery', \App\Http\Controllers\GalleryController::class);
+Route::resource('blog', \App\Http\Controllers\BlogController::class);
+Route::resource('appoinment', \App\Http\Controllers\AppoinmentController::class);
  // Admin All Routes 
  Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
  Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
